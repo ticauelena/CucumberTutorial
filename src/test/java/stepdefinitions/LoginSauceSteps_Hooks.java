@@ -1,10 +1,11 @@
 package stepdefinitions;
 
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
+import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,21 +19,53 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginSauceSteps_Hooks {
 
-   WebDriver driver = null;
+    WebDriver driver = null;
    LoginPage_PF login;
    ProductPage_PF product;
 
-    @Given("site is open")
-    public void site_is_open() {
-        System.out.println("---- I am inside Login Sauce Steps PF class----");
-        System.out.println("Inside Step -site is open");
-        String projectPath =System.getProperty("user.dir");
-        System.out.println("Project path is: " + projectPath);
+    @Before (value = "@smoke", order = 1)
+    public void browserSetup() {
+        System.out.println(" ------------I am inside browserSetup---------------------------");
+           String projectPath =System.getProperty("user.dir");
+           System.out.println("Project path is: " + projectPath);
         System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+    }
 
+    @Before (order = 0)
+    public void setup2() {
+        System.out.println(" ------------I am inside setup 2 ---------------------------");
+    }
+
+    @After (order = 1)
+    public void teardown() {
+        System.out.println(" ------------I am inside teardown close---------------------------");
+        driver.close();
+        driver.quit();
+    }
+
+    @After (order = 2)
+    public void teardown2() {
+        System.out.println(" ------------I am inside teardown 2 ---------------------------");
+    }
+
+    @BeforeStep
+    public void beforeSteps() {
+        System.out.println(" ------------I am inside before Steps---------------------------");
+    }
+
+    @AfterStep
+    public void afterSteps() {
+        System.out.println(" ------------I am inside after Steps---------------------------");
+    }
+
+
+    @Given("site is open")
+    public void site_is_open() {
+        System.out.println("Inside Step -site is open");
     }
 
     @And("user is on login page")
@@ -44,7 +77,7 @@ public class LoginSauceSteps_Hooks {
     @When("^user enters (.*) and (.*)$")
     public void user_enters_username_and_password(String username, String password) throws InterruptedException {
         System.out.println("Inside Step - user enters username and password");
-        login =new LoginPage_PF(driver);
+        login = new LoginPage_PF(driver);
         // id="user-name", password, login-button
         login.enterUsername(username);
         login.enterPassword(password);
@@ -71,8 +104,6 @@ public class LoginSauceSteps_Hooks {
         } else {
             System.out.println("Elementul 'Products' nu a fost gasit.");
         }
-
-        driver.quit();
     }
 
 }
