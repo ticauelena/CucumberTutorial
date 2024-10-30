@@ -34,7 +34,21 @@ public class LoginSauce {
 //        System.out.println("Inside Step - user is on login page");
 //        driver.navigate().to("https://www.saucedemo.com/");
 //    }
-//
+
+
+///////// without multiple username and password
+////    @When("user enters username and password")
+////    public void user_enters_username_and_password() throws InterruptedException {
+////        System.out.println("Inside Step - user enters username and password");
+////
+////        // id="user-name", password, login-button
+////        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+////        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+////        Thread.sleep(3000);
+////    }
+
+
+    ///// without multiple username and password
 //    @When("^user enters (.*) and (.*)$")
 //    public void user_enters_username_and_password(String username, String password) throws InterruptedException {
 //        System.out.println("Inside Step - user enters username and password");

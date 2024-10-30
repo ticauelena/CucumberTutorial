@@ -9,7 +9,6 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-import java.util.List;
 
 public class LoginPage_PF {
     @FindBy(id ="user-name")
