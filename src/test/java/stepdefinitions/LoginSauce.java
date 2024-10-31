@@ -73,9 +73,9 @@ public class LoginSauce {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //        WebElement productsTitle = driver.findElement(By.xpath("//span[@class='title' and text()='Products']"));
 //        if (productsTitle.isDisplayed()) {
-//            System.out.println("Elementul 'Products' a fost gasit: " + productsTitle.getText());
+//            System.out.println("The user os in the 'Products' page: " + productsTitle.getText());
 //        } else {
-//            System.out.println("Elementul 'Products' nu a fost gasit.");
+//            System.out.println("The user is not on the 'Products' page");
 //        }
 //        //driver.close();
 //        driver.quit();
